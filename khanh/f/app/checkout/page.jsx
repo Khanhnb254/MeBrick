@@ -50,7 +50,7 @@ export default function CheckoutPage() {
     email: "",
     address: "",
     note: "",
-    shipping_fee: 0,
+    shipping_fee: 25000,
     payment_method: "bank_qr",
   });
 
@@ -70,7 +70,7 @@ export default function CheckoutPage() {
   const items = cart?.items || [];
 
   const subtotal = useMemo(() => {
-    return items.reduce((sum, it) => sum + Number(it.price || 0) * Number(it.quantity || 1), 0);
+    return items.reduce((sum, it) => sum + Number(it.unit_price || it.price || 0) * Number(it.quantity || 1), 0);
   }, [items]);
 
   const shipFee = useMemo(() => clampInt(form.shipping_fee ?? 0, 0, 1_000_000), [form.shipping_fee]);
@@ -209,7 +209,7 @@ export default function CheckoutPage() {
 
             <div className="checkout-field" style={styles.field}>
               <label className="checkout-label" style={styles.label}>Phí ship</label>
-              <input className="checkout-input" type="number" value={form.shipping_fee} onChange={onChangeNumber("shipping_fee")} style={styles.input} />
+              <input className="checkout-input" type="number" value={25000} readOnly style={{...styles.input, background: "#f1f5f9", cursor: "not-allowed"}} />
             </div>
 
             <div className="checkout-field" style={{ ...styles.field, gridColumn: "1 / -1" }}>
@@ -295,7 +295,7 @@ export default function CheckoutPage() {
                     </div>
                     <div className="checkout-product-meta" style={{ display: "flex", justifyContent: "space-between", color: "#444", fontSize: 13 }}>
                       <span>Số lượng: {it.quantity || 1}</span>
-                      <span>{formatPrice(it.price || 0)}</span>
+                      <span>{formatPrice(it.unit_price || it.price || 0)}</span>
                     </div>
                   </div>
                 </div>

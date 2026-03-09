@@ -930,14 +930,14 @@
 
 .frame-type-name {
   font-weight: 700;
-  font-size: 21.6px;
+  font-size: 15px;
   color: #0b2d72;
   margin-bottom: 2px;
   line-height: 1.2;
 }
 
 .frame-type-desc {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 400;
   color: #0b2d72;
   margin-bottom: 4px;

@@ -8,10 +8,12 @@ import { FiShoppingCart, FiFacebook, FiInstagram } from "react-icons/fi";
 import { PiMusicNoteFill, PiSpeakerSlashFill } from "react-icons/pi";
 import { getCart, cartTotalQty } from "../../lib/cart";
 import { SOCIAL_LINKS } from "../../lib/social-links";
+import styles from "./header.module.css";
 
 export default function Header() {
   const [cartCount, setCartCount] = useState(0);
   const [musicOn, setMusicOn] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const audioRef = useRef(null);
 
   const navItems = [
@@ -74,8 +76,8 @@ export default function Header() {
           />
         </Link>
 
-        {/* Navigation */}
-        <nav style={{ display: "flex", gap: "24px" }}>
+        {/* Navigation – desktop only */}
+        <nav className={styles.desktopNav} style={{ display: "flex", gap: "24px" }}>
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -102,6 +104,7 @@ export default function Header() {
             href={SOCIAL_LINKS.facebook}
             target="_blank"
             rel="noopener noreferrer"
+            className={styles.socialLinks}
             style={{ color: "#1877f2", display: "flex", alignItems: "center" }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
@@ -113,6 +116,7 @@ export default function Header() {
             href={SOCIAL_LINKS.instagram}
             target="_blank"
             rel="noopener noreferrer"
+            className={styles.socialLinks}
             style={{ color: "#e1306c", display: "flex", alignItems: "center" }}
             onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
             onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}>
@@ -165,8 +169,32 @@ export default function Header() {
               </span>
             )}
           </Link>
+
+          {/* Hamburger – mobile only */}
+          <button
+            className={styles.hamburger}
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}>
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
       </div>
+
+      {/* Mobile navigation dropdown */}
+      <nav className={`${styles.mobileMenu} ${menuOpen ? styles.open : ""}`}>
+        {navItems.map((item) => (
+          <Link
+            key={item.name}
+            href={item.href}
+            className={styles.mobileNavLink}
+            onClick={() => setMenuOpen(false)}>
+            {item.name}
+          </Link>
+        ))}
+      </nav>
     </header>
   );
 }

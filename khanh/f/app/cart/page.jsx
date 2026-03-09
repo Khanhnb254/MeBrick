@@ -155,7 +155,7 @@ export default function CartPage() {
   return (
     <>
       <Header />
-      <div style={styles.wrapper}>
+      <div className="cart-wrapper" style={styles.wrapper}>
       {/* HEADER */}
       <div style={styles.header}>
         <div>
@@ -261,17 +261,17 @@ export default function CartPage() {
       {/* SUMMARY */}
       {cart.items.length > 0 && (
         <>
-          <div style={styles.summary}>
+          <div className="cart-summary-box" style={styles.summary}>
             <div style={styles.summaryLabel}>Tạm tính</div>
             <div style={styles.summaryTotal}>{formatPrice(subTotal)}</div>
           </div>
 
-          <div style={styles.actions}>
-            <button onClick={goCheckout} style={styles.checkoutBtn}>
+          <div className="cart-actions" style={styles.actions}>
+            <button onClick={goCheckout} className="cart-checkout-btn" style={styles.checkoutBtn}>
               Thanh toán
             </button>
 
-            <button onClick={() => router.push("/")} style={styles.continueBtn}>
+            <button onClick={() => router.push("/")} className="cart-continue-btn" style={styles.continueBtn}>
               Tiếp tục mua
             </button>
           </div>

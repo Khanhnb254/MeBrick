@@ -29,4 +29,29 @@
   .cart-remove-btn {
     font-size: 16px !important;
   }
+
+  /* Summary: stack label and total on small screens */
+  .cart-summary-box {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+}
+
+/* Very small phones: tighten wrapper padding + stack action buttons */
+@media (max-width: 480px) {
+  .cart-wrapper {
+    padding: 20px 12px !important;
+  }
+
+  .cart-actions {
+    flex-direction: column !important;
+  }
+
+  .cart-checkout-btn,
+  .cart-continue-btn {
+    width: 100% !important;
+    padding: 0 16px !important;
+    text-align: center !important;
+  }
 }
