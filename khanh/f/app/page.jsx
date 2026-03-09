@@ -278,7 +278,7 @@ export default function LovenStorePage() {
             }}>
             Unique for
             <br />
-            <span style={{ color: "#ffffff " }}>
+            <span style={{ color: "#0058ca " }}>
               every moment
             </span>
           </h1>
