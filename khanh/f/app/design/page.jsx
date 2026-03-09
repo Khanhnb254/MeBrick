@@ -10,7 +10,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SampleGallery from "./components/SampleGallery";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import {
   DndContext,
   DragOverlay,
@@ -47,6 +47,14 @@ async function uploadPreviewToBackend(dataUrl) {
 }
 
 export default function DesignPage() {
+  return (
+    <Suspense fallback={<div>Đang tải...</div>}>
+      <DesignPageInner />
+    </Suspense>
+  );
+}
+
+function DesignPageInner() {
 
   // ====================
   // STATE
