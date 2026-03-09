@@ -8,7 +8,12 @@ const app = express();
 // CORS trước routes
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "https://me-brick.vercel.app",
+      "https://khakk.vercel.app",
+      /\.vercel\.app$/,
+    ],
     credentials: true,
   })
 );
